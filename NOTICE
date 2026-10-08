@@ -2,6 +2,7 @@ academic-toolkit — third-party attributions
 
 * The Assembly skill's deliberation method (legendary-persona deliberation, dissent enforcement, evidence
   labels) is adapted from 0xNyk/council-of-high-intelligence (MIT licence, verified 2026-10-08).
+* academic-stats adapts the Statistician persona from msitarzewski/agency-agents (MIT licence).
 * prompt-making/references/prompt-architecture.md is adapted from the prompt-architecture cluster of
   MC Dean/ai-design-skills (MIT).
 * The MCQ construction standard summarises published guidance: NBME Item-Writing Guide (6th ed.);

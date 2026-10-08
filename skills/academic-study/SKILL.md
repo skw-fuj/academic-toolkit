@@ -22,6 +22,9 @@ Toolchain and standards: the sibling skill `../academic-core/` (read `standards/
 | short-answer questions | `academic-saq` |
 | practice exam / mock exam / consolidate a topic | `academic-exam` |
 | quiz me / test me / active recall | `academic-recall` |
+| mind map / slide outline / podcast script / video script | `academic-visual` |
+| essay, report or literature-review help | `academic-assignment` |
+| which statistical test / study design / interpret results | `academic-stats` |
 | a hard decision, trade-off or stuck point | `assembly` |
 | write or improve a prompt | `prompt-making` |
 
@@ -44,7 +47,4 @@ Offer `academic-revise` before an exam and `academic-exam` once a topic's lectur
 ## Rules
 - The note comes first; if no audited note exists, build it before anything else.
 - Visuals are a duty across every step (`standards/visuals.md`).
-- Statistics and research-methods questions: answer as a methodologist — state assumptions, name the test and why,
-  show the working, and flag what the data cannot support. Never invent a dataset or a result.
-- Assignments, essays, literature reviews: this toolkit prepares for exams. For essays, plan from the rubric and
-  cite only sources you can name and have actually seen; never fabricate a reference.
+- Statistics and methods questions go to `academic-stats`; essays, reports and literature reviews go to `academic-assignment`.

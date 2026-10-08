@@ -204,6 +204,18 @@ def convert(md_text: str) -> tuple[str, str, str, list[str]]:
             i += 1
             continue
 
+        # fenced code block (mind-map hierarchies, diagram source): monospace, whitespace preserved
+        if s.startswith("```"):
+            flush_para(); flush_list()
+            buf = []
+            i += 1
+            while i < n and not lines[i].strip().startswith("```"):
+                buf.append(lines[i])
+                i += 1
+            i += 1
+            out.append('<pre class="code">' + html.escape("\n".join(buf), quote=False) + "</pre>")
+            continue
+
         # drop the body H1 (the title lives in the doctitle block)
         if not seen_heading and re.match(r"^#\s+\S", s):
             i += 1

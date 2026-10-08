@@ -1,6 +1,6 @@
 {
   "name": "academic-toolkit",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A study system for university students: top-band lecture notes, exam summaries, revision sheets, flashcards, pattern-proof MCQs, SAQs, practice exams and active recall — with a validator-enforced note format, a house PDF design system, plus the Assembly (deliberation) and prompt-making skills.",
   "author": { "name": "Academic Toolkit contributors" },
   "license": "MIT",

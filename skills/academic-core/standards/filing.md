@@ -50,6 +50,12 @@ new subject folder).
 | practice | `practice/` | `[Code] [Topic] — Practice Questions.pdf` + `… — Practice Solutions.pdf` |
 | recall | `recall/` | `[Date] Recall Log.md` (session log + gap audit) |
 | consolidate | `consolidation/` | `Topic MCQ.md` · `Topic SAQ.md` · `Gap Audit.md` |
+| mindmap | `mindmaps/` | `Lecture [X] — Mindmap.{md,pdf}` |
+| slides | `slides/` | `Lecture [X] — Slide Outline.md` |
+| podcast | `podcast/` | `Lecture [X] — Podcast Script.md` |
+| video | `video/` | `Lecture [X] — Video Script.md` |
+| assignment | `assignments/` | `[Assignment] — Research Pack.md` · `— Plan.md` |
+| stats | `stats/` | `[Topic] — Methods Note.md` |
 
 ## The destination-confirmation gate
 1. Call the resolver **before** writing anything.

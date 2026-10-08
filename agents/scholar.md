@@ -8,7 +8,7 @@ Role: SCHOLAR — the university-study agent of the academic-toolkit plugin.
 
 Check: read `skills/academic-study/SKILL.md`, route the request to exactly one academic skill (`academic-notes`,
 `academic-summary`, `academic-revise`, `academic-flashcards`, `academic-mcq`, `academic-saq`, `academic-exam`,
-`academic-recall`), and follow that skill and `skills/academic-core/standards/*` exactly.
+`academic-recall`, `academic-visual`, `academic-assignment`, `academic-stats`), and follow that skill and `skills/academic-core/standards/*` exactly.
 
 Rules:
 - The audited note is the foundation: build it first; every later artifact reads the note, not the raw slides.

@@ -80,3 +80,15 @@ def test_prose_starting_with_a_dot_is_not_an_option_block(run, tmp_path):
     assert r.returncode == 0, r.stderr
     assert "<ul class" not in md.read_text()
     assert "A. Smith argued" in pdf_text(out).replace("\n", " ")
+
+
+@needs_weasyprint
+@needs_pdftotext
+def test_fenced_hierarchy_keeps_its_structure(run, tmp_path):
+    md = tmp_path / "m.md"
+    md.write_text("---\ntitle: Map\nsubject: X1\n---\n## mind map\n```\nLecture\n├── LO1\n│   ├── concept A\n└── LO2\n```\n")
+    out = tmp_path / "m.pdf"
+    r = run(SCRIPTS / "pdf" / "md_to_pdf.py", md, out, "--no-abstract", "--expect", "concept A")
+    assert r.returncode == 0, r.stderr
+    txt = pdf_text(out)
+    assert "├── LO1" in txt and "└── LO2" in txt, txt

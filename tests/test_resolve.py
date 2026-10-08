@@ -65,7 +65,7 @@ def test_create_refused_on_collision_and_unknown_artifact(run, tmp_path):
     (root / "A1 — duplicate").mkdir()
     code, out = res(run, f, "--subject", "A1", "--artifact", "notes", "--create")
     assert out["status"] == "COLLISION" and out["created"] is False
-    _, out = res(run, f, "--subject", "A1", "--artifact", "podcast")
+    _, out = res(run, f, "--subject", "A1", "--artifact", "bogus")
     assert out["status"] == "UNKNOWN_ARTIFACT"
 
 

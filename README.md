@@ -18,6 +18,9 @@ Works in **Claude chat** (upload skills) and **Claude Code** (drag-and-drop or p
 | **academic-saq** | short-answer questions, model answers, mark scheme, marking |
 | **academic-exam** | printable A/B practice exams with separate solutions; topic consolidation + gap audit |
 | **academic-recall** | one-question-at-a-time retrieval practice, gap audit, spaced-review list |
+| **academic-visual** | mind map, teach-back slide outline, podcast script, video storyboard (text artifacts) |
+| **academic-assignment** | essay/report/literature-review research pack with verified sources and mandatory counter-evidence |
+| **academic-stats** | which test, study design, power, honest interpretation of results |
 | **assembly** | a pantheon of analytical minds that deliberates any hard question and preserves dissent |
 | **prompt-making** | draft, critique and harden any prompt |
 | **academic-core** | shared standards and scripts (not invoked directly) |

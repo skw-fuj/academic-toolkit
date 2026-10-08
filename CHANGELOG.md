@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project are documented here. Format: Keep a Changelog; versioning: SemVer.
 
+## [1.1.0] — 2026-10-08
+### Added
+- `academic-visual` (mind map, slide outline, podcast script, video storyboard — text artifacts only),
+  `academic-assignment` (research pack with verified-source rules), `academic-stats` (methods and interpretation).
+- `md_to_pdf.py` renders fenced code blocks as preserved monospace (mind-map hierarchies keep their structure).
+- Artifact keys `mindmap`, `slides`, `podcast`, `video`, `assignment`, `stats` in the resolver.
+### Notes
+- The suite is now complete: 14 skills + `academic-core` + `scholar` agent.
+
 ## [1.0.1] — 2026-10-08
 ### Added
 - `install.py --only a,b,c` installs just the named skills (plus `academic-core`, always); add `scholar` for the agent.

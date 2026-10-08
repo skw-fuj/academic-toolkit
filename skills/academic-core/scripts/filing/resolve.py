@@ -50,6 +50,12 @@ ARTIFACT_SUBFOLDER = {
     "practice": "practice",
     "recall": "recall",
     "consolidate": "consolidation",
+    "mindmap": "mindmaps",
+    "slides": "slides",
+    "podcast": "podcast",
+    "video": "video",
+    "assignment": "assignments",
+    "stats": "stats",
 }
 
 
