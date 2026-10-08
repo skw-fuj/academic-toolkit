@@ -8,6 +8,8 @@
     python3 tools/install.py --force               # replace existing skills (old copy is backed up)
     python3 tools/install.py --uninstall           # remove exactly what this tool installed
     python3 tools/install.py --deps                # also pip-install optional dependencies
+    python3 tools/install.py --only academic-notes,academic-mcq   # just these skills (+ academic-core, always)
+                                                   # add "scholar" to the list to install the agent too
 
 Never overwrites an existing skill or agent without --force; with --force the old copy is moved to
 `<name>.bak-<timestamp>` rather than deleted. Stdlib only; Python 3.9+.
@@ -38,9 +40,18 @@ def target_dir(args) -> Path:
     return Path.home() / ".claude"
 
 
-def sources():
+def sources(only=None):
     skills = sorted(p for p in (ROOT / "skills").iterdir() if (p / "SKILL.md").is_file())
     agents = sorted((ROOT / "agents").glob("*.md"))
+    if only:
+        names = {s.strip() for s in only.split(",") if s.strip()}
+        known = {s.name for s in skills} | {a.stem for a in agents}
+        bad = sorted(names - known)
+        if bad:
+            raise SystemExit(f"unknown name(s): {', '.join(bad)}\navailable: {', '.join(sorted(known))}")
+        # academic-core holds the shared standards/scripts every academic skill needs: always installed
+        skills = [s for s in skills if s.name in names or s.name == "academic-core"]
+        agents = [a for a in agents if a.stem in names]
     return skills, agents
 
 
@@ -54,7 +65,7 @@ def backup(path: Path, dry: bool) -> Path:
 
 def install(args) -> int:
     base = target_dir(args)
-    skills, agents = sources()
+    skills, agents = sources(args.only)
     plan, conflicts = [], []
     for s in skills:
         dst = base / "skills" / s.name
@@ -141,6 +152,7 @@ def main() -> int:
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--uninstall", action="store_true")
+    ap.add_argument("--only", help="comma-separated skill names to install (academic-core is always included)")
     ap.add_argument("--deps", action="store_true", help="pip-install requirements.txt afterwards")
     args = ap.parse_args()
     return uninstall(args) if args.uninstall else install(args)

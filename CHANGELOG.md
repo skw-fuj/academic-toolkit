@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project are documented here. Format: Keep a Changelog; versioning: SemVer.
 
+## [1.0.1] — 2026-10-08
+### Added
+- `install.py --only a,b,c` installs just the named skills (plus `academic-core`, always); add `scholar` for the agent.
+  Unknown names fail with the list of valid ones.
+### Documented
+- Skills are independent; academic skills share `academic-core`, so hand-copied skills must take it with them.
+
 ## [1.0.0] — 2026-10-08
 First public package, generalised from a personal study system.
 ### Added

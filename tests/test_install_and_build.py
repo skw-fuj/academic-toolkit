@@ -98,3 +98,22 @@ def test_doctor_runs_and_reports_json():
     r = run(ROOT / "skills" / "academic-core" / "scripts" / "doctor.py", "--json")
     rows = json.loads(r.stdout)
     assert any(x["check"].startswith("python") and x["ok"] for x in rows)
+
+
+def test_only_installs_selected_skills_plus_core(tmp_path):
+    t = tmp_path / ".claude"
+    r = run(INSTALL, "--dir", t, "--only", "academic-mcq,academic-notes")
+    assert r.returncode == 0, r.stdout + r.stderr
+    got = sorted(p.name for p in (t / "skills").iterdir())
+    assert got == ["academic-core", "academic-mcq", "academic-notes"], got
+    assert not (t / "agents").exists() or not list((t / "agents").glob("*.md"))
+    # the selected skill's core references still resolve
+    assert (t / "skills" / "academic-mcq" / ".." / "academic-core" / "scripts" / "mcq" / "check_answer_pattern.py").is_file()
+
+
+def test_only_agent_and_unknown_name(tmp_path):
+    t = tmp_path / ".claude"
+    assert run(INSTALL, "--dir", t, "--only", "scholar").returncode == 0
+    assert (t / "agents" / "scholar.md").is_file() and (t / "skills" / "academic-core").is_dir()
+    r = run(INSTALL, "--dir", tmp_path / "x", "--only", "academic-nope")
+    assert r.returncode != 0 and "unknown name" in (r.stdout + r.stderr)

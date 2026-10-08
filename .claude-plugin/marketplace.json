@@ -6,7 +6,7 @@
       "name": "academic-toolkit",
       "source": "./",
       "description": "University study system: notes, summaries, revision, flashcards, MCQ, SAQ, practice exams, recall, Assembly and prompt-making.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "license": "MIT"
     }
   ]

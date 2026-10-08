@@ -14,6 +14,12 @@ Verify downloads against `SHA256SUMS`: `shasum -a 256 -c SHA256SUMS`.
 Upload **academic-notes** first (it carries the standards and validator). Add **academic-study** for the one-stop
 pipeline, then summary / flashcards / mcq / saq / recall as needed. `assembly` and `prompt-making` stand alone.
 
+## Installing only some skills
+`./install.sh --only academic-notes,academic-mcq` installs those skills plus `academic-core` (always included, because
+the academic skills read their standards and scripts from it). Add `scholar` to the list for the agent. By hand: copy
+the skill folder **and** `skills/academic-core/` into the same `skills/` directory. `assembly` and `prompt-making`
+need nothing else. Chat zips are already self-contained.
+
 ## Name collisions
 If you already have skills called `assembly` or `prompt-making`, `install.sh` stops and lists them. `--force` moves
 yours to `<name>.bak-<timestamp>`. In chat, rename on upload or remove the old one first.

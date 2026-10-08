@@ -42,9 +42,13 @@ Prefer conflict detection and backups? Use the installer:
 ```bash
 ./install.sh                 # user scope (~/.claude)       python3 tools/install.py on Windows
 ./install.sh --project .     # this project only
+./install.sh --only academic-notes,academic-mcq   # just the skills you want (+ academic-core)
 ./install.sh --force         # replace existing (old copies are backed up, never deleted)
 ./install.sh --uninstall     # removes exactly what it installed
 ```
+
+> **Pick only what you want.** Every skill is separate. The academic skills share one folder, `academic-core`
+> (standards and scripts). If you copy skill folders by hand, copy `academic-core` with them; `--only` does this for you.
 
 ### Claude Code — plugin
 ```text
