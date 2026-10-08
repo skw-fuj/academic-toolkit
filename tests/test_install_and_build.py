@@ -78,7 +78,7 @@ def test_build_outputs_are_complete_and_chat_zips_self_contained(tmp_path):
                 ok = any(n.startswith(full) for n in names) if full.endswith("/") else full in names
                 assert ok, f"{z.name} references missing {ref}"
     sums = (out / "SHA256SUMS").read_text().splitlines()
-    assert len(sums) == 2 + len(chat)
+    assert len(sums) == 2 + len(chat) + len(list((out / 'free-chat' / 'zips').glob('*.zip')))
 
 
 def test_uninstall_ignores_paths_outside_target(tmp_path):

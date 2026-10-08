@@ -28,6 +28,9 @@ Works in **Claude chat** (upload skills) and **Claude Code** (drag-and-drop or p
 
 ## Install
 
+> **Free Claude chat, or any chat that can't run code or read bundled files?** Use the self-contained edition in
+> `free-chat/` (15 `-lite` skill zips + paste-in prompts). See `free/README.md`.
+
 ### Claude chat (claude.ai / desktop / mobile)
 1. Download the zips in `chat-skills/` (start with **academic-notes.zip**; add the others you want).
 2. Settings → Capabilities → Skills → **Upload skill**, once per zip.

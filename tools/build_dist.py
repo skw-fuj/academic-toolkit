@@ -122,6 +122,13 @@ def main() -> None:
             made.append(build_chat_zip(s, out))
     readme.unlink()
 
+    # 4. free-chat edition (self-contained, script-free lite skills + paste-in prompts)
+    import subprocess, sys
+    subprocess.run([sys.executable, str(ROOT / "tools" / "build_free.py"), "--out", str(out / "free-chat")], check=True,
+                   stdout=subprocess.DEVNULL)
+    shutil.rmtree(out / "free-chat" / "skills")        # the zips are the deliverable; unzipped copies are redundant
+    made.extend(sorted((out / "free-chat" / "zips").glob("*.zip")))
+
     sums = []
     for p in made:
         sums.append(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(out).as_posix()}")

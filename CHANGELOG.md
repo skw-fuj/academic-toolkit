@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project are documented here. Format: Keep a Changelog; versioning: SemVer.
 
+## [1.2.0] — 2026-10-08
+### Added
+- **Free-chat edition** (`free/`, built by `tools/build_free.py`): 15 self-contained, script-free `-lite` skills
+  (one `SKILL.md` each, ≤1200 words) plus 14 paste-in prompt files, for Claude chat that cannot run code or read
+  bundled files. Checks become written checklists reported as "checked by reading"; MCQ answer keys are
+  precomputed and verified against the real checker; PDFs via a print-ready HTML page; Anki via a TSV block.
+- Tests prove every lite skill has no script/file dependency, honest self-audit wording, size limits, a complete
+  router, and that all 18 embedded answer keys pass the real pattern checker.
+
 ## [1.1.0] — 2026-10-08
 ### Added
 - `academic-visual` (mind map, slide outline, podcast script, video storyboard — text artifacts only),
