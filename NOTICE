@@ -1,0 +1,13 @@
+academic-toolkit — third-party attributions
+
+* The Assembly skill's deliberation method (legendary-persona deliberation, dissent enforcement, evidence
+  labels) is adapted from 0xNyk/council-of-high-intelligence (MIT licence, verified 2026-10-08).
+* prompt-making/references/prompt-architecture.md is adapted from the prompt-architecture cluster of
+  MC Dean/ai-design-skills (MIT).
+* The MCQ construction standard summarises published guidance: NBME Item-Writing Guide (6th ed.);
+  Haladyna, Downing & Rodriguez (2002), Applied Measurement in Education 15(3); Haladyna & Downing (1989);
+  Rodriguez (2005), Educational Measurement: Issues and Practice 24(2); Brame (2013), Vanderbilt CFT.
+  These are cited, not reproduced.
+* PDF output uses the Liberation fonts (SIL Open Font License 1.1). They are NOT bundled; install them
+  separately (see README). Figures use matplotlib, PDFs use WeasyPrint, Anki decks use genanki, each under
+  its own licence and installed separately.

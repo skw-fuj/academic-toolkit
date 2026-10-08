@@ -1,0 +1,101 @@
+/* ============================================================================
+   Academic PDF Deliverable — worksheet extensions
+   Loaded AFTER style.css (render_pdf.py concatenates in order).
+   Adds: student fields, instruction line, fillable ruled lines, fillable
+   tables, MCQ mark-boxes, Set A / Set B divider, solutions banner + mark
+   schemes. Still: white page, black ink, no colour fills, no emoji.
+   ============================================================================ */
+
+/* ---- name / date / score fields (worksheets only) --------------------- */
+.student-fields {
+  display: flex;
+  gap: 18pt;
+  margin: 4pt 0 6pt 0;
+  font-size: 10pt;
+}
+.student-fields .field { flex: 1; }
+.student-fields .field .fill {
+  display: inline-block;
+  border-bottom: 0.6pt solid #121417;
+  min-width: 60pt;
+  margin-left: 4pt;
+}
+.instructions-line {
+  font-style: italic;
+  font-size: 10pt;
+  color: #2b2f36;
+  margin: 0 0 12pt 0;
+}
+.meta-line { font-size: 9.5pt; color: #4a4f57; margin: 2pt 0 10pt 0; }
+
+/* ---- fillable ruled answer lines ------------------------------------- */
+/* one .rule per expected line; ~1 line per 20 words of expected answer or
+   per the mark value — wblocks.lines(n) emits n of these. */
+.answer-lines { margin: 5pt 0 10pt 0; break-inside: avoid; }
+.answer-lines .rule {
+  border-bottom: 0.5pt solid #33373d;
+  height: 20pt;
+}
+.answer-lines.tight .rule { height: 17pt; }
+
+/* ---- fillable data table (natural-frequency / 2x2 questions) --------- */
+table.fillin td { height: 26pt; }
+table.fillin td.blank { background: none; }
+
+/* ---- question stems (MCQ + SAQ): bold number, gap before stem text ---- */
+.mcq-item, .saq-item { margin: 9pt 0; }
+.mcq-item { break-inside: avoid; }
+.saq-item { break-inside: avoid-page; }
+.mcq-item .stem, .saq-item .stem { font-weight: 400; margin-bottom: 4pt; }
+.mcq-item .stem .qnum, .saq-item .stem .qnum { font-weight: 700; margin-right: 6pt; }
+.saq-item .pmarks { font-style: italic; color: #4a4f57; white-space: nowrap; }
+.mcq-options { list-style: none; padding-left: 1.4em; margin: 0; }
+.mcq-options > li {
+  position: relative;
+  margin: 2.5pt 0;
+  padding-left: 2pt;
+}
+.mcq-options > li::before {
+  content: "";
+  position: absolute;
+  left: -1.4em;
+  top: 1.5pt;
+  width: 9pt;
+  height: 9pt;
+  border: 0.7pt solid #121417;
+  border-radius: 1pt;
+}
+.mcq-options > li .opt-letter { font-weight: 700; margin-right: 5pt; }
+
+/* ---- Set A / Set B divider: single forced page break ---------------- */
+.set-divider {
+  break-before: page;
+  text-align: center;
+  margin-top: 34%;
+}
+.set-divider .set-name {
+  font-size: 17pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.set-divider .set-sub { font-style: italic; font-size: 11pt; color: #2b2f36; margin-top: 4pt; }
+
+/* ---- solutions document ------------------------------------------- */
+.solutions-banner {
+  border: 1pt solid #121417;
+  padding: 8pt 10pt;
+  margin: 0 0 16pt 0;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+.solution { margin: 9pt 0; break-inside: avoid; }
+.solution .skey { font-weight: 700; }
+.solution .mark-scheme {
+  font-style: italic;
+  font-size: 9.5pt;
+  color: #2b2f36;
+  margin-top: 3pt;
+}
+.solution .distractor-note { font-size: 9.5pt; color: #2b2f36; margin-top: 2pt; }

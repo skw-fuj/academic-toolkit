@@ -1,0 +1,25 @@
+# Changelog
+All notable changes to this project are documented here. Format: Keep a Changelog; versioning: SemVer.
+
+## [1.0.0] — 2026-10-08
+First public package, generalised from a personal study system.
+### Added
+- Eleven skills (`academic-study`, `-notes`, `-summary`, `-revise`, `-flashcards`, `-mcq`, `-saq`, `-exam`,
+  `-recall`, `assembly`, `prompt-making`), a shared `academic-core` toolchain, and a `scholar` agent.
+- Claude Code plugin (`.claude-plugin/`), cross-platform installer (`tools/install.py`, `install.sh`) with
+  conflict detection, backups and exact uninstall, and per-skill zips for Claude chat (`tools/build_dist.py`).
+- Config-driven filing (`resolve.py`) replacing hardcoded paths; configurable spelling, grade band, heading case,
+  wiki-links, admin-content exclusion and mirrors.
+- `doctor.py` health check; pytest suite (format validator, MCQ gates, resolver, PDF render, figure overlap gate,
+  installer, build output, package hygiene).
+### Changed vs the source system
+- `validate_note.py` now fails notes with content before the first learning outcome, flags administrative content,
+  and supports `--heading-case` / `--wikilinks` instead of assuming one house style.
+- `md_to_pdf.py` gained a real CLI (argparse), lettered MCQ-option blocks, an H1 title fallback, `--lang`, and
+  `--no-abstract`.
+- `audit_mcq_set.py` located its answer-pattern checker through a skill folder that no longer exists, so the
+  answer-position check was silently skipped (reported as a note, never as a failure); it now resolves the
+  checker next to itself and the test suite proves it runs.
+- Found and fixed during review: resolver prefix collision (`BIOL100` vs `BIOL1001`), prose "A. …" mis-rendered as an
+  option block, uninstall trusting its record file, Windows-hostile zip entry names.
+- Removed every external-service dependency (notebook generators, Notion/vault specifics, personal registry).

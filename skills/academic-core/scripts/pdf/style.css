@@ -1,0 +1,221 @@
+/* ============================================================================
+   Academic NOTES design system — shared stylesheet
+   Source of truth: standards/pdf-design.md
+   Render path: HTML string (built by blocks.py) -> weasyprint -> PDF.
+   Academic-toolkit house stylesheet
+   (2026-09-06). Reuse verbatim across every subject and session — do NOT
+   regenerate from prose.
+
+   Two colour systems that never mix:
+     - the document (text / headings / tables / boxes) is pure black/grey/white
+     - diagrams are the ONLY place colour appears, on their own palette
+       (see make_diagrams.py)
+
+   Font: Liberation Serif / Liberation Sans. Installed on this Mac via
+   `brew install --cask font-liberation`. weasyprint embeds a subset per PDF.
+   ============================================================================ */
+
+* { box-sizing: border-box; }
+html { hyphens: auto; }
+
+@page {
+  size: A4;
+  margin: 25mm 24mm 22mm 24mm;
+  @bottom-center {
+    content: var(--doc-label, "") "  ·  " string(runhead) "  ·  " counter(page);
+    font-size: 8.5pt;
+    color: #6b6b6b;
+    font-family: "Liberation Serif", serif;
+    border-top: 0.5pt solid #cfcfcf;
+    padding-top: 5pt;
+    letter-spacing: 0.2px;
+  }
+}
+
+/* the doc label (usually the subject) is injected as a CSS var on <html> by
+   blocks.document(); string(runhead) tracks the most recent .runhead marker. */
+
+/* ---- running-header marker: invisible, zero-height ---------------------- */
+.runhead {
+  string-set: runhead content();
+  font-size: 0; line-height: 0; height: 0; margin: 0; overflow: hidden;
+}
+
+/* ---- base type -------------------------------------------------------- */
+body {
+  font-family: "Liberation Serif", serif;
+  font-size: 11pt;
+  line-height: 1.55;
+  text-align: justify;
+  color: #1a1a1a;
+  margin: 0;
+}
+p { margin: 6px 0; }
+strong { font-weight: 700; color: #000; }
+em { font-style: italic; }
+sup { font-size: 7.4pt; }
+.small { font-size: 8.8pt; color: #666; }
+
+ol { margin: 6px 0 9px; padding-left: 20px; }
+li { margin-bottom: 3px; }
+
+/* body bullets are en-dash markers with a hanging indent (matches the shipped
+   note set), not discs. .checklist and .lo-abstract keep their own treatment. */
+ul { margin: 6px 0 9px; padding-left: 0; list-style: none; }
+ul:not(.checklist) > li { padding-left: 16px; position: relative; }
+ul:not(.checklist) > li::before {
+  content: "\2013"; position: absolute; left: 0; color: #333;
+}
+
+/* ---- title block (page 1, in flow — never a cover page) --------------- */
+.doctitle { margin-bottom: 4px; }
+.doctitle .kicker {
+  font-family: "Liberation Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-size: 9pt;
+  color: #555;
+  margin: 0 0 6px 0;
+}
+.doctitle h1 {
+  font-size: 20.5pt;
+  font-weight: 700;
+  color: #0f1115;
+  line-height: 1.25;
+  margin: 0 0 6px 0;
+}
+.doctitle .subtitle {
+  font-style: italic;
+  font-size: 11.3pt;
+  color: #3a3a3a;
+  margin: 0 0 10px 0;
+}
+.doctitle hr {
+  border: none;
+  border-top: 1.1pt solid #111;
+  margin: 0;
+}
+
+/* ---- scope / outcomes abstract (directly under the title rule) -------- */
+.lo-abstract {
+  margin: 14px 0 22px;
+  padding: 10px 2px 12px;
+  border-top: 0.7pt solid #9a9a9a;
+  border-bottom: 0.7pt solid #9a9a9a;
+}
+.lo-abstract .k {
+  font-family: "Liberation Sans", sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  color: #333;
+  display: block;
+  margin-bottom: 6px;
+}
+.lo-abstract ol { padding-left: 19px; margin: 4px 0; list-style: decimal; }
+.lo-abstract ul { padding-left: 0; margin: 4px 0; }
+.lo-abstract li { font-size: 10.3pt; margin-bottom: 3px; }
+.lo-abstract .note {
+  font-size: 9pt; color: #666; font-style: italic;
+  margin: 8px 0 0 0;
+}
+
+/* ---- headings ------------------------------------------------------- */
+h1.section-head {
+  font-size: 14pt;
+  font-weight: 700;
+  color: #0f1115;
+  border-bottom: 1pt solid #111;
+  padding-bottom: 5px;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  break-after: avoid;
+}
+h1.section-head .tag {
+  font-variant: small-caps;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: .3px;
+  margin-right: 6px;
+}
+h2 {
+  font-size: 12pt; font-weight: 700; font-style: italic; color: #111;
+  margin: 14px 0 5px 0; break-after: avoid; text-align: left;
+}
+h3 {
+  font-size: 10.8pt; font-weight: 700; font-style: normal; color: #111;
+  margin: 11px 0 4px 0; break-after: avoid; text-align: left;
+}
+
+/* ---- callout boxes: ONE style, run-in italic-bold label, never colour - */
+.box {
+  margin: 11px 0;
+  padding: 1px 0 1px 13px;
+  border-left: 1.6pt solid #1a1a1a;
+  break-inside: avoid;
+}
+.box .box-title { font-weight: 700; font-style: italic; }
+.box p:first-child { display: inline; margin: 0; }
+.box p:first-child + * { margin-top: 4px; }
+.box p { text-align: left; margin: 4px 0; }
+.box ul, .box table { margin-top: 6px; }
+
+/* ---- tables: booktabs, rules only, never shaded --------------------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 11px 0;
+  font-size: 10.1pt;
+}
+caption {
+  caption-side: top; text-align: left;
+  font-style: italic; font-size: 9.8pt; color: #222;
+  margin-bottom: 4px;
+}
+thead tr { border-top: 1.1pt solid #000; border-bottom: 0.75pt solid #000; }
+th { font-weight: 700; text-align: left; padding: 5.5px 9px; vertical-align: bottom; }
+td { padding: 5.5px 9px; vertical-align: top; }
+th, td { hyphens: none; -weasy-hyphens: none; text-align: left; }  /* ragged-right, no mid-word breaks */
+tbody tr:last-child td { border-bottom: 1.1pt solid #000; }
+td.hl, th.hl { font-weight: 700; }
+table.tight th, table.tight td { padding: 3.8px 8px; font-size: 9.6pt; }
+thead { display: table-header-group; }   /* repeat header on page breaks */
+
+/* ---- figures: always numbered, caption below, no frame ------------- */
+figure { margin: 13px auto; text-align: center; break-inside: avoid; }
+figure img { max-width: 100%; max-height: 75mm; }
+figure.wide img { max-height: 87mm; }
+figcaption {
+  font-size: 9.4pt; color: #333; margin-top: 6px;
+  text-align: left; font-style: italic;
+}
+
+/* ---- supplementary components ------------------------------------- */
+.formula {
+  text-align: center; font-style: italic; font-size: 12.3pt;
+  margin: 12px 0;
+}
+.checklist { list-style: none; padding-left: 0; }
+.checklist li {
+  padding-left: 15px; position: relative; margin-bottom: 4px;
+}
+.checklist li::before {
+  content: "\2013"; position: absolute; left: 0; color: #333;
+}
+.quote-block {
+  border-left: 1.4pt solid #999; padding-left: 12px;
+  font-style: italic; color: #333; margin: 9px 0; font-size: 10.2pt;
+}
+.related-end {
+  margin-top: 20px; padding-top: 9px;
+  border-top: 0.7pt solid #9a9a9a;
+  font-size: 9.3pt; color: #555; font-style: italic;
+}
+hr.sect { border: none; border-top: 0.6pt dashed #b5b5b5; margin: 14px 0; }
+
+/* lettered answer options (MCQ): hanging indent, no en-dash marker */
+ul.opts { list-style: none; padding-left: 22px; margin: 2px 0 10px 0; }
+ul.opts > li { padding-left: 0; margin-bottom: 2px; text-align: left; break-inside: avoid; }
+ul.opts > li::before { content: none; }
+ul.opts .opt-l { font-weight: 700; display: inline-block; width: 1.4em; margin-left: -1.4em; }
